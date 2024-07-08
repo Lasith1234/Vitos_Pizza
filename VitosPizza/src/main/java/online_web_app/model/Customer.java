@@ -1,4 +1,4 @@
-package onlinewebapp.model;
+package online_web_app.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

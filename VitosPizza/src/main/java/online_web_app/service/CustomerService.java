@@ -1,6 +1,6 @@
-package onlinewebapp.service;
+package online_web_app.service;
 
-import onlinewebapp.model.Customer;
+import online_web_app.model.Customer;
 
 import java.util.List;
 

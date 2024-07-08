@@ -1,4 +1,4 @@
-package onlinewebapp.VitosPizza;
+package online_web_app.VitosPizza;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

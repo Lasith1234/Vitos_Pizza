@@ -1,7 +1,7 @@
-package onlinewebapp.controller;
+package online_web_app.controller;
 
-import onlinewebapp.model.Customer;
-import onlinewebapp.service.CustomerService;
+import online_web_app.model.Customer;
+import online_web_app.service.implementation.CustomerServiceImpl;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -15,7 +15,7 @@ import java.util.List;
 @Valid
 public class CustomerController {
 
-    private final CustomerService customerService;
+    private final CustomerServiceImpl customerService;
 
     @PostMapping("")
     @ResponseStatus(HttpStatus.CREATED)
@@ -24,13 +24,12 @@ public class CustomerController {
     }
 
     @GetMapping("")
-    public List<Customer> getallCustomers(){
+    public List<Customer> getAllCustomers(){
         return customerService.getCustomers();
     }
 
     @GetMapping("/{id}")
-    public Customer getCustomerById(@PathVariable int id) {
+    public Customer getCustomerById(@PathVariable Integer id) {
         return customerService.getCustomerById(id);
     }
-
 }

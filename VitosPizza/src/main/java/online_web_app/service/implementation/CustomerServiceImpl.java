@@ -1,11 +1,13 @@
-package onlinewebapp.service.implementation;
+package online_web_app.service.implementation;
 
-import onlinewebapp.model.Customer;
-import onlinewebapp.repository.CustomerRepo;
-import onlinewebapp.service.CustomerService;
+import online_web_app.model.Customer;
+import online_web_app.repository.CustomerRepo;
+import online_web_app.service.CustomerService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -24,11 +26,13 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public List<Customer> getCustomers() {
+        log.info("finding all...");
         return customerRepo.findAll();
     }
 
     @Override
     public Customer getCustomerById(Integer id) {
-        return customerRepo.findById(id).get();
+        return customerRepo.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Customer not found for id: " + id));
     }
 }
