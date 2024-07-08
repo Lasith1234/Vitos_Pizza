@@ -1,4 +1,4 @@
-package OnlineWebApp;
+package onlinewebapp;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
