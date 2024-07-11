@@ -1,13 +1,14 @@
 package online_web_app.service;
 
 import online_web_app.model.Customer;
+import online_web_app.model.dtos.CustomerDTO;
 
 import java.util.List;
 
 public interface CustomerService {
-    void addCustomer(Customer customer);
+    Customer addCustomer(CustomerDTO customerDTO);
 
     List<Customer> getCustomers();
 
-    Customer getCustomerById(Integer id);
+    Customer getCustomerById(String id);
 }

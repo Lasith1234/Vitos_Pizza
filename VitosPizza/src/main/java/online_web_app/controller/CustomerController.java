@@ -1,7 +1,8 @@
 package online_web_app.controller;
 
 import online_web_app.model.Customer;
-import online_web_app.service.implementation.CustomerServiceImpl;
+import online_web_app.model.dtos.CustomerDTO;
+import online_web_app.service.CustomerService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -15,12 +16,13 @@ import java.util.List;
 @Valid
 public class CustomerController {
 
-    private final CustomerServiceImpl customerService;
+    private final CustomerService customerService;
 
     @PostMapping("")
     @ResponseStatus(HttpStatus.CREATED)
-    public void addCustomer(@Valid @RequestBody Customer customer) {
-        customerService.addCustomer(customer);
+    public Customer addCustomer(@Valid @RequestBody CustomerDTO customerDTO) {
+
+        return customerService.addCustomer(customerDTO);
     }
 
     @GetMapping("")
@@ -29,7 +31,7 @@ public class CustomerController {
     }
 
     @GetMapping("/{id}")
-    public Customer getCustomerById(@PathVariable Integer id) {
+    public Customer getCustomerById(@PathVariable String id) {
         return customerService.getCustomerById(id);
     }
 }
