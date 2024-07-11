@@ -6,6 +6,8 @@ import online_web_app.repository.CustomerRepo;
 import online_web_app.service.CustomerService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -20,10 +22,13 @@ public class CustomerServiceImpl implements CustomerService {
 
     private final CustomerRepo customerRepo;
 
+    private ModelMapper modelMapper = new ModelMapper();
+
     @Override
     public Customer addCustomer(CustomerDTO customerDTO) {
 
-        Customer customer = Customer.builder().email(customerDTO.getEmail()).firstName(customerDTO.getFirstName()).lastName(customerDTO.getLastName()).mobileNo(customerDTO.getMobileNo()).password(customerDTO.getPassword()).createdAt(LocalDateTime.now()).build();
+        Customer customer = modelMapper.map(customerDTO, Customer.class);
+        customer.setCreatedAt(LocalDateTime.now());
         customerRepo.save(customer);
         log.info("Customer added successfully");
         return customer;
